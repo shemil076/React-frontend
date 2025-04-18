@@ -27,7 +27,7 @@ Run the  application:
 
 # npm run start
 
-The server starts on http://localhost:8080.
+The application starts on http://localhost:3000/
 
 
 
