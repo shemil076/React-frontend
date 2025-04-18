@@ -12,7 +12,7 @@ const Signup: React.FC<SignupProps> = ({setIsLogin}) => {
     const [password, setPassword]= useState<string | null>(null);
     const [firstName, setFirstName] = useState<string | null>(null);
     const [lastName, setLastName] = useState<string | null>(null); 
-    const { register } = useAuth();
+    const { register, isError } = useAuth();
 
     const handleSubmit = async (event : React.FormEvent) => {
         event.preventDefault();
@@ -20,8 +20,11 @@ const Signup: React.FC<SignupProps> = ({setIsLogin}) => {
             try{
                 await register(phoneNumber, password, firstName, lastName)
 
-                alert("Registered successful");
-                setIsLogin(true)
+
+                if(isError){
+                    setIsLogin(true)
+                }
+                
             }catch(error){
                 console.log("Error occurred when registering", error)
             }
@@ -55,7 +58,7 @@ const Signup: React.FC<SignupProps> = ({setIsLogin}) => {
                                 </div>
                                 <div className="flex flex-col">
                                     <input type="text"
-                                        placeholder="Phone Number"
+                                        placeholder="Phone Number i.e +94764259425"
                                         onChange={e => setPhoneNumber(e.target.value)}
                                         className="w-full px-3 rounded-none shadow-none border-0 border-b border-black bg-transparent text-black placeholder-gray-500 focus:outline-none focus:ring-0  mb-5" />
                                 </div>

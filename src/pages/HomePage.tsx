@@ -15,24 +15,30 @@ const HomePage: React.FC = () => {
     }
 
     return (
-        <div className="w-full h-[calc(100vh-99px)] overflow-y-hidden">
-            <div className="flex flex-row-reverse mx-5">
-                <button
-                    className="w-full sm:w-auto px-10 py-1 rounded-3xl bg-white text-black shadow-md shadow-black"
-                    onClick={() => navigate("/earn")}
-                >
-                    Earn points
-                </button>
+        <div className="w-full h-[calc(100vh-99px)] bg-gradient-to-br from-indigo-50 to-purple-100 overflow-y-hidden">
+          {/* Top Right Button */}
+          <div className="flex flex-row- mx-5 mt-4 justify-between justify-items-center">
+
+            <div className="">Hello there, </div>
+            <button
+              className="px-8 py-2 rounded-full bg-purple-700 text-white shadow-md hover:bg-purple-800 transition duration-200"
+              onClick={() => navigate("/earn")}
+            >
+              Earn Points
+            </button>
+          </div>
+      
+          {/* Center Content */}
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="sm:w-auto mx-3 w-full mb-20">
+              <div>
+                <BalanceCard user={user} />
+              </div>
             </div>
-            <div className="w-full h-full flex items-center justify-center">
-                <div className="sm:w-auto mx-3 w-full mb-20">
-                    <div>
-                        <BalanceCard user={user} />
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    );
+      );
+      
 };
 
 export default HomePage;

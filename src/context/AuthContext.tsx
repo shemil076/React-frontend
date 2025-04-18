@@ -13,6 +13,7 @@ interface AuthContextType{
     login : (phoneNumber: string, password: string) => Promise<void>;
     register : (phoneNumber: string, password: string, firstName: string, lastName: string) => Promise<void>;
     logout :() => void
+    isError :boolean | null
 }
 
 
@@ -24,6 +25,7 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
     const [token, setToken] = useState<string| null>(localStorage.getItem('token'));
     const navigate = useNavigate();
     const {showAlert} = useAlert();
+    const [isError, setIsError] = useState<boolean | null>(null);
 
     
     useEffect(()=>{
@@ -79,9 +81,11 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
         })
         .then((response)=>{
             console.log("registration response", response.data)
+            setIsError(false)
         })
         .catch((error)=>{
             showAlert("ERROR","Error occurred while signing in")
+            setIsError(true)
         })
     }
 
@@ -92,7 +96,7 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{user, token, login, register, logout}}>
+        <AuthContext.Provider value={{user, token, login, register, logout, isError}}>
             {children}
         </AuthContext.Provider>
     );

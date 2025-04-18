@@ -24,9 +24,9 @@ const Login: React.FC<LoginProps> = ({ setIsLogin }) => {
     }
 
     return (
-        <div className="z-10">
+        <div className="z-10 ">
             <div className="w-full h-screen flex items-center justify-center inset-9">
-                <div className="grid grid-cols-1 border p-10 rounded-xl shadow-xl bg-white">
+                <div className="grid grid-cols-1 border p-10 px-12 rounded-xl shadow-xl bg-white">
                     <div className="m-6 space-y-2" >
                         <div className=" text-2xl text-center  font-bold">Welcome!</div>
 
@@ -38,9 +38,9 @@ const Login: React.FC<LoginProps> = ({ setIsLogin }) => {
                             <div>
                                 <div className="flex flex-col">
                                     <input type="text"
-                                        placeholder="Phone Number"
+                                        placeholder="Phone Number i.e +94764259425"
                                         onChange={e => setPhoneNumber(e.target.value)}
-                                        className="w-full px-3 rounded-none shadow-none border-0 border-b border-black bg-transparent text-black placeholder-gray-500 focus:outline-none focus:ring-0  mb-5" />
+                                        className="w-full px-1 rounded-none shadow-none border-0 border-b border-black bg-transparent text-black placeholder-gray-500 focus:outline-none focus:ring-0  mb-5" />
                                 </div>
 
                                 <div className="flex flex-col">
