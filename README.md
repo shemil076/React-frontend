@@ -23,7 +23,7 @@ Setup Instructions
 
 How to Run the Application
 
-Start the Server: Run the Go application:
+Run the  application:
 
 # npm run start
 
