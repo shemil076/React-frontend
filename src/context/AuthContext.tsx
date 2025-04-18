@@ -4,6 +4,7 @@ import { User } from "../types/user";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { formatUser } from "../lib/utils/user";
+import { useAlert } from "./AlertContext";
 
 
 interface AuthContextType{
@@ -22,6 +23,7 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string| null>(localStorage.getItem('token'));
     const navigate = useNavigate();
+    const {showAlert} = useAlert();
 
     
     useEffect(()=>{
@@ -36,7 +38,7 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
                     console.log("Response user", response.data);
 
                     setUser(formatUser(response.data))
-                    navigate("/earn")
+                    navigate("/home")
                 })
                 .catch((err)=>{
                     console.log("error occurred", err)
@@ -63,6 +65,9 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
             setUser(response.data.user)
             localStorage.setItem('token', response.data.token);
         })
+        .catch((error)=>{
+            showAlert("ERROR","Error occurred while logging in")
+        })
     }
 
     const register = async (phoneNumber: string, password: string, firstName: string, lastName: string) => {
@@ -74,6 +79,9 @@ const AuthProvider : React.FC<React.PropsWithChildren> = ({children}) => {
         })
         .then((response)=>{
             console.log("registration response", response.data)
+        })
+        .catch((error)=>{
+            showAlert("ERROR","Error occurred while signing in")
         })
     }
 

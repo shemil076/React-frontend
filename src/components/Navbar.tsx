@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
     return (
         <nav className="border m-5 p-2 rounded-3xl">
-            <div className="grid grid-cols-3 justify-items-center">
+            <div className="grid grid-cols-4 justify-items-center">
+                <Link to="/home" >
+                    <div className="hover:bg-blue-500 rounded">
+                        Home
+                    </div>
+                </Link>
                 <Link to="/earn" >
                     <div className="hover:bg-blue-500 rounded">
                         Earn

@@ -2,13 +2,14 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import AuthPage from './pages/AuthPage';
 import AuthProvider from './context/AuthContext';
-import HomePage from './pages/HomePage';
-import EarnPage from './pages/EarnPage';
 import RedeemPage from './pages/RedeemPage';
 import BalancePage from './pages/BalancePage';
 import HistoryPage from './pages/HistoryPage';
 import Navbar from './components/Navbar';
-import AlertProvider from './context/Alert ontext';
+import AlertProvider from './context/AlertContext';
+import HomePage from './pages/HomePage';
+import EarnPage from './pages/EarnPage';
+
 
 
 function App() {
@@ -16,20 +17,23 @@ function App() {
 
   const hideNavbar = location.pathname === '/';
   return (
-    <AuthProvider>
-       <AlertProvider>
-       {!hideNavbar && <Navbar />}
-      <Routes>
+    <AlertProvider>
+      <AuthProvider>
 
-        <Route path="/" element={<AuthPage />} />
-        <Route path="/earn" element={<EarnPage />} />
-        <Route path="/redeem" element={<RedeemPage />} />
-        <Route path="/balance" element={<BalancePage />} />
-        <Route path="/history" element={<HistoryPage />} />
-      </Routes>
-       </AlertProvider>
-       
-    </AuthProvider>
+        {!hideNavbar && <Navbar />}
+        <Routes>
+
+          <Route path="/" element={<AuthPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/earn" element={<EarnPage />} />
+          <Route path="/redeem" element={<RedeemPage />} />
+          <Route path="/balance" element={<BalancePage />} />
+          <Route path="/history" element={<HistoryPage />} />
+        </Routes>
+
+
+      </AuthProvider>
+    </AlertProvider>
   );
 }
 

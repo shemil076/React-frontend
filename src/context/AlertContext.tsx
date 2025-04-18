@@ -1,5 +1,5 @@
 
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { AlertType } from "../types/alert";
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import AlertBanner from "../components/Alert";
@@ -38,6 +38,12 @@ const AlertProvider : React.FC<React.PropsWithChildren> = ({children}) => {
             </>
         </ALertContext.Provider>
     )
+}
+
+export const useAlert = () => {
+    const context = useContext(ALertContext);
+    if(!context) throw new Error("useAlert must be used within an AlertProvider")
+    return context;
 }
 
 export default AlertProvider;
