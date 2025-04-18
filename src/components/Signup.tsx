@@ -12,19 +12,14 @@ const Signup: React.FC<SignupProps> = ({setIsLogin}) => {
     const [password, setPassword]= useState<string | null>(null);
     const [firstName, setFirstName] = useState<string | null>(null);
     const [lastName, setLastName] = useState<string | null>(null); 
-    const { register, isError } = useAuth();
+    const { register } = useAuth();
 
     const handleSubmit = async (event : React.FormEvent) => {
         event.preventDefault();
         if(password && phoneNumber && firstName && lastName){
             try{
                 await register(phoneNumber, password, firstName, lastName)
-
-
-                if(isError){
                     setIsLogin(true)
-                }
-                
             }catch(error){
                 console.log("Error occurred when registering", error)
             }
